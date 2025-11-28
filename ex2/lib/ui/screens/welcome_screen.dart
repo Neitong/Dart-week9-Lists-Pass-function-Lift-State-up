@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+  const WelcomeScreen(this.startConvert, {super.key});
+
+  final void Function() startConvert;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 15),
             OutlinedButton(
-              onPressed: null,
+              onPressed: startConvert,
               style: OutlinedButton.styleFrom(
                   side: const BorderSide(width: 1.0, color: Colors.white)),
               child: const Text('Start to convert',

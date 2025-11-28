@@ -1,8 +1,7 @@
-//main.dart
-
+// main.dart
 import 'package:flutter/material.dart';
-
 import 'ui/screens/welcome_screen.dart';
+import 'ui/screens/temparature_screen.dart';
 
 class TemperatureApp extends StatefulWidget {
   const TemperatureApp({super.key});
@@ -14,9 +13,21 @@ class TemperatureApp extends StatefulWidget {
 }
 
 class _TemperatureAppState extends State<TemperatureApp> {
+  var activeScreenName = 'welcome-screen';
+
+  void switchScreen() {
+    setState(() {
+      activeScreenName = 'converter-screen';
+    });
+  }
 
   @override
   Widget build(context) {
+    Widget screenWidget = WelcomeScreen(switchScreen);
+
+    if (activeScreenName == 'converter-screen') {
+      screenWidget = TemperatureScreen();
+    }
 
     return MaterialApp(
       home: Scaffold(
@@ -31,7 +42,8 @@ class _TemperatureAppState extends State<TemperatureApp> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: const WelcomeScreen(),
+          // 4. Render the chosen widget
+          child: screenWidget,
         ),
       ),
     );
